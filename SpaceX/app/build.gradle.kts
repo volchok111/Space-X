@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.volchok.space_x"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.volchok.space_x"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -72,7 +72,6 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:$retrofit")
     implementation("com.squareup.retrofit2:converter-gson:$retrofit")
     implementation("com.squareup.retrofit2:converter-moshi:$retrofit")
-    implementation("com.squareup.retrofit2:converter-gson:$retrofit")
 
     //OkHttp
     implementation("com.squareup.okhttp3:okhttp:$okhttp")
