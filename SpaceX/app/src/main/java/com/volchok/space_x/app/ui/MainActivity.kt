@@ -1,4 +1,4 @@
-package com.volchok.space_x
+package com.volchok.space_x.app.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
