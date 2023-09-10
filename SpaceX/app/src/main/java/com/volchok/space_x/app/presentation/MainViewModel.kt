@@ -1,7 +1,7 @@
 package com.volchok.space_x.app.presentation
 
 import androidx.lifecycle.viewModelScope
-import com.volchok.space_x.app.domain.GoToHomeUseCase
+import com.volchok.space_x.app.domain.GoToCompanyUseCase
 import com.volchok.space_x.app.domain.GoToRocketsUseCase
 import com.volchok.space_x.app.domain.ObserveNavigationEventsUseCase
 import com.volchok.space_x.app.model.ForwardNavigationEvent
@@ -11,7 +11,7 @@ import com.volchok.space_x.library.mvvm.presentation.AbstractViewModel
 import kotlinx.coroutines.launch
 
 class MainViewModel(
-    private val goToHomeUseCase: GoToHomeUseCase,
+    private val goToCompanyUseCase: GoToCompanyUseCase,
     private val goToRocketsUseCase: GoToRocketsUseCase,
     private val observeNavigationEventsUseCase: ObserveNavigationEventsUseCase
 ) : AbstractViewModel<MainViewModel.State>(State()) {
@@ -22,8 +22,8 @@ class MainViewModel(
         }
     }
 
-    fun onHome() {
-        goToHomeUseCase(Unit)
+    fun onCompany() {
+        goToCompanyUseCase(Unit)
     }
 
     fun onRockets() {

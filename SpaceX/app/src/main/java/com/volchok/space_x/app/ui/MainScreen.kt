@@ -21,7 +21,7 @@ import com.volchok.space_x.app.model.Route
 import com.volchok.space_x.app.presentation.MainViewModel
 import com.volchok.space_x.feature.company.ui.HomeScreen
 import com.volchok.space_x.feature.details.ui.DetailsScreen
-import com.volchok.space_x.feature.home.ui.RocketsScreen
+import com.volchok.space_x.feature.rockets.ui.RocketsScreen
 import com.volchok.space_x.library.ui.SpaceXBottomBar
 import com.volchok.space_x.ui.theme.SpaceXTheme
 import org.koin.androidx.compose.getViewModel
@@ -32,7 +32,7 @@ fun MainScreen() {
 
     MainScreenImpl(
         viewModel = viewModel,
-        viewModel::onHome,
+        viewModel::onCompany,
         viewModel::onRockets
     )
 }
@@ -40,7 +40,7 @@ fun MainScreen() {
 @Composable
 fun MainScreenImpl(
     viewModel: MainViewModel,
-    onHome: () -> Unit,
+    onCompany: () -> Unit,
     onRockets: () -> Unit,
 ) {
     SpaceXTheme {
@@ -49,7 +49,7 @@ fun MainScreenImpl(
         Scaffold(
             bottomBar = {
                 SpaceXBottomBar(
-                    onHome = { onHome() },
+                    onHome = { onCompany() },
                     onRockets = { onRockets() }
                 )
             }
@@ -88,7 +88,7 @@ private fun Screens(
         startDestination = Route.Initial(),
         modifier = modifier
     ) {
-        composable(Route.Home()) { HomeScreen() }
+        composable(Route.Company()) { HomeScreen() }
         composable(Route.Details()) { DetailsScreen() }
         composable(Route.Rockets()) { RocketsScreen() }
 

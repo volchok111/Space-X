@@ -1,8 +1,8 @@
 package com.volchok.space_x.feature.details.presentation
 
 import androidx.lifecycle.viewModelScope
-import com.volchok.space_x.library.rockets.domain.FetchRocketInfoUseCase
-import com.volchok.space_x.library.rockets.domain.ObserveRocketDetailsUseCase
+import com.volchok.space_x.library.memory.domain.FetchRocketInfoUseCase
+import com.volchok.space_x.library.memory.domain.ObserveRocketDetailsUseCase
 import com.volchok.space_x.library.api.model.details.RocketDetailsModel
 import com.volchok.space_x.library.mvvm.presentation.AbstractViewModel
 import com.volchok.space_x.library.use_case.domain.invoke
