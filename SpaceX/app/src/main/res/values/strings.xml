@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Space-X</string>
+
+    <string name="home_screen_title">Rockets</string>
+    <string name="home_screen_first_flight">First flight:</string>
 </resources>

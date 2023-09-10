@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit
 val apiModule = module {
     factory {
         Retrofit.Builder()
-            .baseUrl("https://api.spacexdata.com/v3/")
+            .baseUrl("https://api.spacexdata.com/v4/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(
                 OkHttpClient.Builder()
