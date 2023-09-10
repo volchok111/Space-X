@@ -3,7 +3,9 @@ package com.volchok.space_x.app.ui
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
@@ -17,8 +19,10 @@ import com.volchok.space_x.app.model.BackNavigationEvent
 import com.volchok.space_x.app.model.ForwardNavigationEvent
 import com.volchok.space_x.app.model.Route
 import com.volchok.space_x.app.presentation.MainViewModel
+import com.volchok.space_x.feature.company.ui.HomeScreen
 import com.volchok.space_x.feature.details.ui.DetailsScreen
-import com.volchok.space_x.feature.home.ui.HomeScreen
+import com.volchok.space_x.feature.home.ui.RocketsScreen
+import com.volchok.space_x.library.ui.SpaceXBottomBar
 import com.volchok.space_x.ui.theme.SpaceXTheme
 import org.koin.androidx.compose.getViewModel
 
@@ -27,34 +31,49 @@ fun MainScreen() {
     val viewModel = getViewModel<MainViewModel>()
 
     MainScreenImpl(
-        viewModel = viewModel
+        viewModel = viewModel,
+        viewModel::onHome,
+        viewModel::onRockets
     )
 }
 
 @Composable
 fun MainScreenImpl(
-    viewModel: MainViewModel
+    viewModel: MainViewModel,
+    onHome: () -> Unit,
+    onRockets: () -> Unit,
 ) {
     SpaceXTheme {
         val navController = rememberNavController()
 
-        NavigationEffect(
-            navController = navController,
-            viewModel = viewModel,
-            onNavigationEventConsumed = viewModel::onNavigationEventConsumed
-        )
-
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-        ) {
-            Screens(
-                navController = navController,
+        Scaffold(
+            bottomBar = {
+                SpaceXBottomBar(
+                    onHome = { onHome() },
+                    onRockets = { onRockets() }
+                )
+            }
+        ) { paddingValues ->
+            Column(
                 modifier = Modifier
-                    .weight(1f)
-                    .background(MaterialTheme.colors.background)
-            )
-            //TODO implement internet connection state
+                    .fillMaxSize()
+                    .padding(paddingValues)
+            ) {
+
+                NavigationEffect(
+                    navController = navController,
+                    viewModel = viewModel,
+                    onNavigationEventConsumed = viewModel::onNavigationEventConsumed
+                )
+
+                Screens(
+                    navController = navController,
+                    modifier = Modifier
+                        .weight(1f)
+                        .background(MaterialTheme.colors.background)
+                )
+                //TODO implement internet connection state
+            }
         }
     }
 }
@@ -71,6 +90,8 @@ private fun Screens(
     ) {
         composable(Route.Home()) { HomeScreen() }
         composable(Route.Details()) { DetailsScreen() }
+        composable(Route.Rockets()) { RocketsScreen() }
+
     }
 }
 
