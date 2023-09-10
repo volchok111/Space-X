@@ -2,6 +2,7 @@ package com.volchok.space_x.app.ui
 
 import android.app.Application
 import com.volchok.space_x.app.di.mainModule
+import com.volchok.space_x.feature.company.di.companyModule
 import com.volchok.space_x.feature.details.di.detailsModule
 import com.volchok.space_x.feature.rockets.di.rocketsModule
 import com.volchok.space_x.library.api.di.apiModule
@@ -15,6 +16,7 @@ class MainApplication : Application() {
             androidContext(applicationContext)
             modules(
                 apiModule,
+                companyModule,
                 detailsModule,
                 mainModule,
                 memoryModule,

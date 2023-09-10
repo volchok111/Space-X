@@ -2,6 +2,8 @@ package com.volchok.space_x.library.api.di
 
 import com.volchok.space_x.library.api.data.RocketApi
 import com.volchok.space_x.library.api.data.RocketRepository
+import com.volchok.space_x.library.api.domain.ObserveCompanyUseCase
+import com.volchok.space_x.library.api.domain.ObserveRocketDetailsUseCase
 import com.volchok.space_x.library.api.domain.ObserveRocketsUseCase
 import com.volchok.space_x.library.api.domain.RemoteRepository
 import okhttp3.OkHttpClient
@@ -33,6 +35,8 @@ val apiModule = module {
             .build()
             .create(RocketApi::class.java)
     }
+    factoryOf(::ObserveCompanyUseCase)
+    factoryOf(::ObserveRocketDetailsUseCase)
     factoryOf(::ObserveRocketsUseCase)
 
     factoryOf(::RocketRepository) bind RemoteRepository::class
