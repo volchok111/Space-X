@@ -1,9 +1,11 @@
-package com.volchok.space_x.library.memory.domain
+package com.volchok.space_x.feature.details.domain
 
 import com.volchok.space_x.library.api.domain.RemoteRepository
 import com.volchok.space_x.library.api.model.details.RocketDetailsModel
 import com.volchok.space_x.library.data.model.Data
 import com.volchok.space_x.library.data.model.safeCall
+import com.volchok.space_x.library.memory.details.domain.GetSelectedRocketIdUseCase
+import com.volchok.space_x.library.memory.details.domain.LocalRocketRepository
 import com.volchok.space_x.library.use_case.domain.SuspendUseCase
 import com.volchok.space_x.library.use_case.domain.invoke
 

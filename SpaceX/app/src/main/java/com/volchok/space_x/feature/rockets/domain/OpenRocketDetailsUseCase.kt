@@ -1,6 +1,6 @@
 package com.volchok.space_x.feature.rockets.domain
 
-import com.volchok.space_x.library.memory.domain.DetailsRepository
+import com.volchok.space_x.library.memory.details.domain.DetailsRepository
 import com.volchok.space_x.library.use_case.domain.SynchronousUseCase
 
 class OpenRocketDetailsUseCase(

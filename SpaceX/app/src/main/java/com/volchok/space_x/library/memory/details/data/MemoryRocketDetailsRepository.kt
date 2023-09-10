@@ -1,6 +1,6 @@
-package com.volchok.space_x.library.memory.data
+package com.volchok.space_x.library.memory.details.data
 
-import com.volchok.space_x.library.memory.domain.LocalRocketRepository
+import com.volchok.space_x.library.memory.details.domain.LocalRocketRepository
 import com.volchok.space_x.library.api.model.details.RocketDetailsModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

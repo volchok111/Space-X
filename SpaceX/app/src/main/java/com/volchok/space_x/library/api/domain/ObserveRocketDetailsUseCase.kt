@@ -1,6 +1,7 @@
-package com.volchok.space_x.library.memory.domain
+package com.volchok.space_x.library.api.domain
 
 import com.volchok.space_x.library.api.model.details.RocketDetailsModel
+import com.volchok.space_x.library.memory.details.domain.LocalRocketRepository
 import com.volchok.space_x.library.use_case.domain.SynchronousUseCase
 import kotlinx.coroutines.flow.Flow
 
