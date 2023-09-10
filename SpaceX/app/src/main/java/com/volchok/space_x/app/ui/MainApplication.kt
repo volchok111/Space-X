@@ -2,6 +2,7 @@ package com.volchok.space_x.app.ui
 
 import android.app.Application
 import com.volchok.space_x.app.di.mainModule
+import com.volchok.space_x.feature.home.di.homeModule
 import com.volchok.space_x.library.api.di.apiModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -11,8 +12,9 @@ class MainApplication : Application() {
         startKoin {
             androidContext(applicationContext)
             modules(
+                apiModule,
+                homeModule,
                 mainModule,
-                apiModule
             )
         }
         super.onCreate()
