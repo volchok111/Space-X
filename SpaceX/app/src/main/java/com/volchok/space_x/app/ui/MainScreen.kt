@@ -17,6 +17,7 @@ import com.volchok.space_x.app.model.BackNavigationEvent
 import com.volchok.space_x.app.model.ForwardNavigationEvent
 import com.volchok.space_x.app.model.Route
 import com.volchok.space_x.app.presentation.MainViewModel
+import com.volchok.space_x.feature.details.ui.DetailsScreen
 import com.volchok.space_x.feature.home.ui.HomeScreen
 import com.volchok.space_x.ui.theme.SpaceXTheme
 import org.koin.androidx.compose.getViewModel
@@ -69,6 +70,7 @@ private fun Screens(
         modifier = modifier
     ) {
         composable(Route.Home()) { HomeScreen() }
+        composable(Route.Details()) { DetailsScreen() }
     }
 }
 

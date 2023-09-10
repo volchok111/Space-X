@@ -1,6 +1,25 @@
 <resources>
     <string name="app_name">Space-X</string>
 
+    <!-- MARK: - Home Screen -->
     <string name="home_screen_title">Rockets</string>
     <string name="home_screen_first_flight">First flight:</string>
+
+    <!-- MARK: - Details Screen -->
+    <string name="details_screen_overview">Overview</string>
+    <string name="details_screen_parameters">Parameters</string>
+    <string name="details_screen_parameters_height">height</string>
+    <string name="details_screen_parameters_diameter">diameter</string>
+    <string name="details_screen_parameters_mass">mass</string>
+    <string name="details_screen_engines">engines</string>
+    <string name="details_screen_tons">tons of fuel</string>
+    <string name="details_screen_seconds">seconds burn time</string>
+    <string name="details_screen_first_stage">First stage</string>
+    <string name="details_screen_second_stage">Second stage</string>
+    <string name="details_screen_photos">Photos</string>
+    <string name="details_screen_reusable">reusable</string>
+    <string name="details_screen_not_reusable">not reusable</string>
+    <string name="details_screen_launch_btn">Launch</string>
+    <string name="details_screen_m">m</string>
+    <string name="details_screen_t">t</string>
 </resources>

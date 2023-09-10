@@ -30,6 +30,7 @@ import com.volchok.space_x.feature.home.presentation.HomeViewModel
 import com.volchok.space_x.library.ui.SpaceXColors
 import com.volchok.space_x.library.ui.SpaceXColors.black
 import com.volchok.space_x.library.ui.SpaceXColors.chrome300
+import com.volchok.space_x.library.ui.SpaceXColors.chrome50
 import com.volchok.space_x.library.ui.SpaceXDimensions.sizeL
 import com.volchok.space_x.library.ui.SpaceXDimensions.sizeS
 import com.volchok.space_x.library.ui.SpaceXDimensions.sizeXL
@@ -45,7 +46,8 @@ fun HomeScreen() {
     val state = viewModel.states.collectAsState()
 
     HomeScreenImpl(
-        state = state.value
+        state = state.value,
+        viewModel::onItem
     )
 }
 
@@ -80,7 +82,7 @@ private fun HomeScreenImpl(
         ) {
             Box(
                 modifier = Modifier
-                    .background(SpaceXColors.white)
+                    .background(chrome50)
                     .padding(start = sizeS, end = sizeS)
             ) {
                 LazyColumn {
