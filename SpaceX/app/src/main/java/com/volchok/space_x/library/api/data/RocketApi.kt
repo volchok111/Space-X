@@ -10,8 +10,8 @@ interface RocketApi {
     @GET("rockets")
     suspend fun getRockets(): List<RocketItem>
 
-    @GET("rockets/{rocket_id}")
+    @GET("rockets/{id}")
     suspend fun getRocketInfo(
-        @Path(value = "rocket_id") id: String
+        @Path(value = "id") id: String
     ): RocketDetailsModel
 }

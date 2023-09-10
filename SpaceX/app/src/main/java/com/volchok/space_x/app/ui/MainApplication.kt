@@ -2,6 +2,7 @@ package com.volchok.space_x.app.ui
 
 import android.app.Application
 import com.volchok.space_x.app.di.mainModule
+import com.volchok.space_x.feature.details.di.detailsModule
 import com.volchok.space_x.feature.home.di.homeModule
 import com.volchok.space_x.library.api.di.apiModule
 import org.koin.android.ext.koin.androidContext
@@ -13,6 +14,7 @@ class MainApplication : Application() {
             androidContext(applicationContext)
             modules(
                 apiModule,
+                detailsModule,
                 homeModule,
                 mainModule,
             )
