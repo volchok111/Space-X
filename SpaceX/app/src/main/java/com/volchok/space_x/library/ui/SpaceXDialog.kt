@@ -14,13 +14,25 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment.Companion.BottomEnd
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.animateLottieCompositionAsState
+import com.airbnb.lottie.compose.rememberLottieComposition
+import com.volchok.space_x.R
 import com.volchok.space_x.library.ui.SpaceXColors.black
-import com.volchok.space_x.library.ui.SpaceXColors.yellow
 import com.volchok.space_x.library.ui.SpaceXColors.white
+import com.volchok.space_x.library.ui.SpaceXColors.yellow
+import com.volchok.space_x.library.ui.SpaceXDimensions.sizeM
+import com.volchok.space_x.library.ui.SpaceXDimensions.sizeS
+import com.volchok.space_x.library.ui.SpaceXDimensions.sizeXS
+import com.volchok.space_x.library.ui.SpaceXDimensions.sizeXXS
 
 @Composable
 fun SpaceXAlertDialog(
@@ -43,27 +55,27 @@ fun SpaceXAlertDialog(
         ) {
         Surface(
             modifier = modifier,
-            shape = RoundedCornerShape(SpaceXDimensions.sizeXXS),
+            shape = RoundedCornerShape(sizeXXS),
             color = white,
             contentColor = black
         ) {
             Column(
-                modifier = Modifier.padding(SpaceXDimensions.sizeXS)
+                modifier = Modifier.padding(sizeXS)
             ) {
                 Text(
                     text = title,
                     style = MaterialTheme.typography.h6,
                     modifier = Modifier
-                        .padding(SpaceXDimensions.sizeS)
+                        .padding(sizeS)
                 )
                 if (!message.isNullOrEmpty()) {
                     Text(
                         text = message,
                         style = MaterialTheme.typography.body2,
-                        modifier = Modifier.padding(SpaceXDimensions.sizeS)
+                        modifier = Modifier.padding(sizeS)
                     )
                 }
-                Spacer(modifier = Modifier.height(SpaceXDimensions.sizeXS))
+                Spacer(modifier = Modifier.height(sizeXS))
                 Row {
                     neutralButtonText?.let {
                         SpaceXActionButton(
@@ -81,7 +93,7 @@ fun SpaceXAlertDialog(
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(start = SpaceXDimensions.sizeXXS),
+                            .padding(start = sizeXXS),
                         contentAlignment = BottomEnd
                     ) {
                         SpaceXText(
@@ -89,12 +101,12 @@ fun SpaceXAlertDialog(
                             style = MaterialTheme.typography.h2,
                             modifier = Modifier
                                 .clickable { onPositiveButtonClick() }
-                                .padding(end = SpaceXDimensions.sizeXS),
+                                .padding(end = sizeXS),
                             color = yellow,
                         )
                     }
                 }
-                Spacer(modifier = Modifier.height(SpaceXDimensions.sizeXXS))
+                Spacer(modifier = Modifier.height(sizeXXS))
             }
         }
     }
@@ -106,14 +118,23 @@ fun SpaceXLoadingDialog(
     modifier: Modifier = Modifier,
     text: String? = null,
 ) {
+
+    val isLoading by remember { mutableStateOf(true) }
+    val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(R.raw.rocket))
+    val progress by animateLottieCompositionAsState(
+        composition = composition,
+        isPlaying = isLoading,
+        iterations = 1000
+    )
+
     Surface(
         modifier = modifier.fillMaxSize(),
-        shape = RoundedCornerShape(SpaceXDimensions.sizeS),
+        shape = RoundedCornerShape(sizeS),
         color = white,
         contentColor = black
     ) {
         Column(
-            modifier = Modifier.padding(SpaceXDimensions.sizeM)
+            modifier = Modifier.padding(sizeM)
         ) {
             Text(
                 text = title,
@@ -126,6 +147,11 @@ fun SpaceXLoadingDialog(
                     modifier = Modifier.padding(top = SpaceXDimensions.sizeL)
                 )
             }
+            Spacer(modifier = Modifier.height(sizeM))
+            LottieAnimation(
+                composition = composition,
+                progress = { progress })
+            Spacer(modifier = Modifier.height(sizeXXS))
         }
     }
 }
