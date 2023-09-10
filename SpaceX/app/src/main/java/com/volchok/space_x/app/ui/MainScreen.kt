@@ -19,7 +19,7 @@ import com.volchok.space_x.app.model.BackNavigationEvent
 import com.volchok.space_x.app.model.ForwardNavigationEvent
 import com.volchok.space_x.app.model.Route
 import com.volchok.space_x.app.presentation.MainViewModel
-import com.volchok.space_x.feature.company.ui.HomeScreen
+import com.volchok.space_x.feature.company.ui.CompanyScreen
 import com.volchok.space_x.feature.details.ui.DetailsScreen
 import com.volchok.space_x.feature.rockets.ui.RocketsScreen
 import com.volchok.space_x.library.ui.SpaceXBottomBar
@@ -88,7 +88,7 @@ private fun Screens(
         startDestination = Route.Initial(),
         modifier = modifier
     ) {
-        composable(Route.Company()) { HomeScreen() }
+        composable(Route.Company()) { CompanyScreen() }
         composable(Route.Details()) { DetailsScreen() }
         composable(Route.Rockets()) { RocketsScreen() }
 
