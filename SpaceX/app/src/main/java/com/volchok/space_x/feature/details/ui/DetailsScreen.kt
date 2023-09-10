@@ -54,7 +54,6 @@ private fun DetailsScreenImpl(
     state: DetailsViewModel.State
 ) {
 
-
     Column(
         modifier = Modifier
             .fillMaxSize()
