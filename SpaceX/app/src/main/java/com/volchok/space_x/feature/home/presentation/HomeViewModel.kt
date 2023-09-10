@@ -1,6 +1,7 @@
 package com.volchok.space_x.feature.home.presentation
 
 import androidx.lifecycle.viewModelScope
+import com.volchok.space_x.feature.home.domain.OpenRocketDetailsUseCase
 import com.volchok.space_x.library.api.domain.ObserveRocketsUseCase
 import com.volchok.space_x.library.api.model.rocket.RocketItem
 import com.volchok.space_x.library.data.model.Data
@@ -9,7 +10,8 @@ import com.volchok.space_x.library.use_case.domain.invoke
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
-    private val observeRocketsUseCase: ObserveRocketsUseCase
+    private val observeRocketsUseCase: ObserveRocketsUseCase,
+    private val openRocketDetailsUseCase: OpenRocketDetailsUseCase
 ) : AbstractViewModel<HomeViewModel.State>(State()) {
 
     init {
@@ -20,6 +22,10 @@ class HomeViewModel(
                 }
             }
         }
+    }
+
+    fun onItem(id: String) {
+        openRocketDetailsUseCase(id)
     }
 
     private fun RocketItem.toItem() = State.RocketItem(

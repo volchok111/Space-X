@@ -88,6 +88,9 @@ dependencies {
     //Lottie Icons
     implementation ("com.airbnb.android:lottie-compose:6.0.0")
 
+    //Coil
+    implementation("io.coil-kt:coil-compose:2.2.2")
+
     //Tests
     testImplementation ("io.mockk:mockk:1.13.2")
     testImplementation ("io.mockk:mockk-agent-jvm:1.13.3")

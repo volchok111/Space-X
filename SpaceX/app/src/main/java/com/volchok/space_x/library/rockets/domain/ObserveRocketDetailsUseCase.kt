@@ -1,4 +1,4 @@
-package com.volchok.space_x.feature.details.domain
+package com.volchok.space_x.library.rockets.domain
 
 import com.volchok.space_x.library.api.model.details.RocketDetailsModel
 import com.volchok.space_x.library.use_case.domain.SynchronousUseCase
