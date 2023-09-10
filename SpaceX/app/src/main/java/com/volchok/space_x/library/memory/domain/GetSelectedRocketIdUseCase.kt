@@ -1,4 +1,4 @@
-package com.volchok.space_x.library.rockets.domain
+package com.volchok.space_x.library.memory.domain
 
 import com.volchok.space_x.library.use_case.domain.SynchronousUseCase
 

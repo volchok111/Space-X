@@ -1,13 +1,13 @@
 package com.volchok.space_x.app.model
 
 enum class Route {
-    Rockets,
+    Company,
     Details,
-    Home;
+    Rockets;
 
     operator fun invoke() = name.lowercase()
 
     companion object {
-        val Initial = Home
+        val Initial = Company
     }
 }

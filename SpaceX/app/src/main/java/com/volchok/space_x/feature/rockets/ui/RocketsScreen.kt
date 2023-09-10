@@ -1,4 +1,4 @@
-package com.volchok.space_x.feature.home.ui
+package com.volchok.space_x.feature.rockets.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -26,7 +26,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.volchok.space_x.R
-import com.volchok.space_x.feature.home.presentation.HomeViewModel
+import com.volchok.space_x.feature.rockets.presentation.RocketsViewModel
 import com.volchok.space_x.library.ui.SpaceXColors
 import com.volchok.space_x.library.ui.SpaceXColors.black
 import com.volchok.space_x.library.ui.SpaceXColors.chrome300
@@ -42,7 +42,7 @@ import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun RocketsScreen() {
-    val viewModel = getViewModel<HomeViewModel>()
+    val viewModel = getViewModel<RocketsViewModel>()
     val state = viewModel.states.collectAsState()
 
     RocketsScreenImpl(
@@ -53,7 +53,7 @@ fun RocketsScreen() {
 
 @Composable
 private fun RocketsScreenImpl(
-    state: HomeViewModel.State,
+    state: RocketsViewModel.State,
     onItem: (String) -> Unit = {}
 ) {
     Column(
@@ -109,7 +109,7 @@ private fun RocketsScreenImpl(
 
 @Composable
 private fun RocketListItem(
-    item: HomeViewModel.State.RocketItem,
+    item: RocketsViewModel.State.RocketItem,
     modifier: Modifier = Modifier
 ) {
     Row(
