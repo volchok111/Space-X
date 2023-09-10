@@ -41,18 +41,18 @@ import com.volchok.space_x.library.ui.SpaceXText
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun HomeScreen() {
+fun RocketsScreen() {
     val viewModel = getViewModel<HomeViewModel>()
     val state = viewModel.states.collectAsState()
 
-    HomeScreenImpl(
+    RocketsScreenImpl(
         state = state.value,
         viewModel::onItem
     )
 }
 
 @Composable
-private fun HomeScreenImpl(
+private fun RocketsScreenImpl(
     state: HomeViewModel.State,
     onItem: (String) -> Unit = {}
 ) {

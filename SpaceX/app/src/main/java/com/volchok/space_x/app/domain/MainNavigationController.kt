@@ -7,4 +7,8 @@ interface MainNavigationController {
     val navigationEvent: Flow<NavigationEvent>
 
     fun goBack()
+
+    fun goToHome()
+
+    fun goToRockets()
 }
