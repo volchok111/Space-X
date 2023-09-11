@@ -45,16 +45,22 @@ fun RocketsScreen() {
     val viewModel = getViewModel<RocketsViewModel>()
     val state = viewModel.states.collectAsState()
 
+//    LaunchedEffect(viewModel) {
+//        viewModel.onFilter()
+//    }
+
     RocketsScreenImpl(
         state = state.value,
-        viewModel::onItem
+        viewModel::onItem,
+        viewModel::onFilterButtonClicked
     )
 }
 
 @Composable
 private fun RocketsScreenImpl(
     state: RocketsViewModel.State,
-    onItem: (String) -> Unit = {}
+    onItem: (String) -> Unit = {},
+    onFilterButtonClicked: () -> Unit = {},
 ) {
     Column(
         verticalArrangement = Arrangement.Top,
@@ -63,15 +69,22 @@ private fun RocketsScreenImpl(
             .fillMaxSize()
             .padding(sizeS)
     ) {
-        Box(
-            contentAlignment = Alignment.CenterStart,
-            modifier = Modifier.fillMaxWidth()
-        ) {
+        Row {
             SpaceXText(
                 text = stringResource(id = R.string.home_screen_title),
                 style = MaterialTheme.typography.h4,
                 fontWeight = FontWeight.Bold,
-                color = black
+                color = black,
+                modifier = Modifier.weight(1f)
+            )
+            SpaceXIcon(
+                icon = if (state.isFilterButtonCLicked) R.drawable.filter else R.drawable.filter_off,
+                contentDescription = "Filter",
+                modifier = Modifier
+                    .size(sizeL)
+                    .clickable {
+                        onFilterButtonClicked()
+                    }
             )
         }
         Spacer(modifier = Modifier.height(sizeS))
@@ -85,17 +98,33 @@ private fun RocketsScreenImpl(
                     .background(chrome50)
                     .padding(start = sizeS, end = sizeS)
             ) {
-                LazyColumn {
-                    itemsIndexed(state.rockets) { index, item ->
-                        if (index != 0 && index != 4) {
-                            Divider(color = SpaceXColors.chrome100, thickness = 1.dp)
+                if (!state.isFilterButtonCLicked) {
+                    LazyColumn {
+                        itemsIndexed(state.rockets) { index, item ->
+                            if (index != 0 && index != 4) {
+                                Divider(color = SpaceXColors.chrome100, thickness = 1.dp)
+                            }
+                            Spacer(modifier = Modifier.height(sizeXS))
+                            RocketListItem(
+                                item = item,
+                                modifier = Modifier.clickable { item.id?.let { onItem(it) } }
+                            )
+                            Spacer(modifier = Modifier.height(sizeXS))
                         }
-                        Spacer(modifier = Modifier.height(sizeXS))
-                        RocketListItem(
-                            item = item,
-                            modifier = Modifier.clickable { item.id?.let { onItem(it) } }
-                        )
-                        Spacer(modifier = Modifier.height(sizeXS))
+                    }
+                } else {
+                    LazyColumn {
+                        itemsIndexed(state.filteredRockets) { index, item ->
+                            if (index != 0 && index != 4) {
+                                Divider(color = SpaceXColors.chrome100, thickness = 1.dp)
+                            }
+                            Spacer(modifier = Modifier.height(sizeXS))
+                            RocketListItem(
+                                item = item,
+                                modifier = Modifier.clickable { item.id?.let { onItem(it) } }
+                            )
+                            Spacer(modifier = Modifier.height(sizeXS))
+                        }
                     }
                 }
             }
@@ -131,14 +160,14 @@ private fun RocketListItem(
             item.name?.let {
                 SpaceXText(
                     text = it,
-                    style = MaterialTheme.typography.h6,
+                    style = MaterialTheme.typography.h5,
                     color = black,
                     fontWeight = FontWeight.Bold
                 )
             }
             SpaceXText(
                 text = "${stringResource(id = R.string.home_screen_first_flight)} ${item.first_flight}",
-                style = MaterialTheme.typography.subtitle2,
+                style = MaterialTheme.typography.subtitle1,
                 color = chrome300
             )
         }
