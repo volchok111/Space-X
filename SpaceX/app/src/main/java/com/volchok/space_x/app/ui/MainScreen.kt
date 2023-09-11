@@ -10,11 +10,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.volchok.space_x.R
 import com.volchok.space_x.app.model.BackNavigationEvent
 import com.volchok.space_x.app.model.ForwardNavigationEvent
 import com.volchok.space_x.app.model.Route
@@ -22,6 +24,7 @@ import com.volchok.space_x.app.presentation.MainViewModel
 import com.volchok.space_x.feature.company.ui.CompanyScreen
 import com.volchok.space_x.feature.details.ui.DetailsScreen
 import com.volchok.space_x.feature.rockets.ui.RocketsScreen
+import com.volchok.space_x.library.ui.SpaceXAlertDialog
 import com.volchok.space_x.library.ui.SpaceXBottomBar
 import com.volchok.space_x.ui.theme.SpaceXTheme
 import org.koin.androidx.compose.getViewModel
@@ -29,8 +32,10 @@ import org.koin.androidx.compose.getViewModel
 @Composable
 fun MainScreen() {
     val viewModel = getViewModel<MainViewModel>()
+    val state = viewModel.states.collectAsState()
 
     MainScreenImpl(
+        state = state.value,
         viewModel = viewModel,
         viewModel::onCompany,
         viewModel::onRockets
@@ -39,6 +44,7 @@ fun MainScreen() {
 
 @Composable
 fun MainScreenImpl(
+    state: MainViewModel.State,
     viewModel: MainViewModel,
     onCompany: () -> Unit,
     onRockets: () -> Unit,
@@ -72,7 +78,13 @@ fun MainScreenImpl(
                         .weight(1f)
                         .background(MaterialTheme.colors.background)
                 )
-                //TODO implement internet connection state
+                if (state.isOffline) {
+                    SpaceXAlertDialog(
+                        title = stringResource(id = R.string.no_internet_connection),
+                        onDismiss = { },
+                        positiveButtonText = ""
+                    )
+                }
             }
         }
     }
