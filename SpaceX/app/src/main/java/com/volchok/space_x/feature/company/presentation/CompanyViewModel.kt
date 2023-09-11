@@ -3,7 +3,7 @@ package com.volchok.space_x.feature.company.presentation
 import androidx.lifecycle.viewModelScope
 import com.volchok.space_x.library.api.domain.ObserveCompanyUseCase
 import com.volchok.space_x.library.api.model.company.CompanyModel
-import com.volchok.space_x.library.memory.company.domain.FetchCompanyUseCase
+import com.volchok.space_x.feature.company.domain.FetchCompanyUseCase
 import com.volchok.space_x.library.mvvm.presentation.AbstractViewModel
 import com.volchok.space_x.library.use_case.domain.invoke
 import kotlinx.coroutines.launch

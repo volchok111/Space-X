@@ -1,9 +1,10 @@
-package com.volchok.space_x.library.memory.company.domain
+package com.volchok.space_x.feature.company.domain
 
 import com.volchok.space_x.library.api.domain.RemoteRepository
 import com.volchok.space_x.library.api.model.company.CompanyModel
 import com.volchok.space_x.library.data.model.Data
 import com.volchok.space_x.library.data.model.safeCall
+import com.volchok.space_x.library.memory.company.domain.LocalCompanyRepository
 import com.volchok.space_x.library.use_case.domain.SuspendUseCase
 
 class FetchCompanyUseCase(
