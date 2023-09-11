@@ -18,9 +18,22 @@ class RocketsViewModel(
         viewModelScope.launch {
             observeRocketsUseCase().collect { list ->
                 if (list is Data.Success) {
-                    state = state.copy(rockets = list.value.map { it.toItem() }, loading = false)
+                    state = state.copy(
+                        rockets = list.value.map { it.toItem() },
+                        filteredRockets = list.value.sortedByDescending { item -> item.first_flight }
+                            .map { it.toItem() },
+                        loading = false
+                    )
                 }
             }
+        }
+    }
+
+    fun onFilterButtonClicked() {
+        state = if (!state.isFilterButtonCLicked) {
+            state.copy(isFilterButtonCLicked = true)
+        } else {
+            state.copy(isFilterButtonCLicked = false)
         }
     }
 
@@ -36,7 +49,9 @@ class RocketsViewModel(
 
     data class State(
         val rockets: List<RocketItem> = emptyList(),
-        val loading: Boolean = true
+        val filteredRockets: List<RocketItem> = emptyList(),
+        val loading: Boolean = true,
+        val isFilterButtonCLicked: Boolean = false
     ) : AbstractViewModel.State {
         data class RocketItem(
             val first_flight: String? = null,
