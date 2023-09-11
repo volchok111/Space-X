@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Space-X</string>
 
-    <!-- MARK: - Home Screen -->
+    <!-- MARK: - Rockets Screen -->
     <string name="home_screen_title">Rockets</string>
     <string name="home_screen_first_flight">First flight:</string>
 
@@ -22,4 +22,11 @@
     <string name="details_screen_launch_btn">Launch</string>
     <string name="details_screen_m">m</string>
     <string name="details_screen_t">t</string>
+
+    <!-- MARK: - Company Screen -->
+    <string name="company_screen_ceo">CEO:</string>
+    <string name="company_screen_coo">COO:</string>
+    <string name="company_screen_founded">Founded:</string>
+    <string name="company_screen_employees">Employees:</string>
+    <string name="company_screen_valuation">Valuation:</string>
 </resources>

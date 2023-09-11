@@ -14,7 +14,7 @@ object SpaceXColors {
 
     val black = Color(0xFF000000)
     val white = Color(0xFFFFFFFF)
-    val yellow = Color(0xFFfac620)
+    val yellow = Color(0xFFffa705)
 
     val red = Color(0xFFD22121)
 }
