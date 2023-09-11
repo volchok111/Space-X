@@ -22,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -45,10 +46,6 @@ fun RocketsScreen() {
     val viewModel = getViewModel<RocketsViewModel>()
     val state = viewModel.states.collectAsState()
 
-//    LaunchedEffect(viewModel) {
-//        viewModel.onFilter()
-//    }
-
     RocketsScreenImpl(
         state = state.value,
         viewModel::onItem,
@@ -57,7 +54,7 @@ fun RocketsScreen() {
 }
 
 @Composable
-private fun RocketsScreenImpl(
+fun RocketsScreenImpl(
     state: RocketsViewModel.State,
     onItem: (String) -> Unit = {},
     onFilterButtonClicked: () -> Unit = {},
@@ -107,7 +104,9 @@ private fun RocketsScreenImpl(
                             Spacer(modifier = Modifier.height(sizeXS))
                             RocketListItem(
                                 item = item,
-                                modifier = Modifier.clickable { item.id?.let { onItem(it) } }
+                                modifier = Modifier
+                                    .clickable { item.id?.let { onItem(it) } }
+                                    .testTag(RocketsScreenTestTags.RocketItemTag)
                             )
                             Spacer(modifier = Modifier.height(sizeXS))
                         }
@@ -178,6 +177,12 @@ private fun RocketListItem(
             modifier = Modifier
                 .size(sizeXL)
                 .align(Alignment.CenterVertically)
+                .testTag(RocketsScreenTestTags.IconNavigateNextTag)
         )
     }
+}
+
+object RocketsScreenTestTags {
+    const val IconNavigateNextTag = "icon_navigate_next"
+    const val RocketItemTag = "rocket_item_tag"
 }
